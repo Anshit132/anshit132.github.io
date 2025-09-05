@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anshit Sanjay — Portfolio</title>
+  <meta name="description" content="Anshit Sanjay — AI/ML & Software Projects Portfolio" />
+  <style>
+    :root{
+      --bg:#0f1220;          /* deep navy */
+      --card:#151935;        /* card surface */
+      --muted:#aab0c0;       /* muted text */
+      --text:#e8ecfd;        /* main text */
+      --acc1:#7c5cff;        /* purple */
+      --acc2:#21d4fd;        /* cyan */
+      --acc3:#ffb86b;        /* amber */
+      --ring:rgba(124,92,255,0.45);
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+      --font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Inter,Ubuntu,'Helvetica Neue',Arial,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,rgba(33,212,253,.25),transparent 60%),radial-gradient(1000px 500px at -10% 10%,rgba(124,92,255,.20),transparent 55%),var(--bg);color:var(--text);font-family:var(--font);line-height:1.6}
+
+    /* NAV */
+    .nav{position:sticky;top:0;backdrop-filter:saturate(140%) blur(10px);background:linear-gradient(to right,rgba(15,18,32,.85),rgba(15,18,32,.65));border-bottom:1px solid rgba(255,255,255,.06);z-index:20}
+    .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 18px}
+    .brand{font-weight:700;letter-spacing:.2px}
+    .nav a{color:var(--text);text-decoration:none;opacity:.9}
+    .nav ul{list-style:none;display:flex;gap:18px;margin:0;padding:0}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(120deg,rgba(124,92,255,.18),rgba(33,212,253,.18));box-shadow:var(--shadow);text-decoration:none;color:var(--text)}
+
+    /* HERO */
+    .hero{max-width:1100px;margin:32px auto 0;padding:56px 18px 36px;display:grid;grid-template-columns:1.2fr .8fr;gap:26px}
+    .hero h1{font-size:clamp(28px,5vw,44px);line-height:1.15;margin:.2rem 0}
+    .hero p{color:var(--muted);margin:.6rem 0 1.6rem}
+    .badges{display:flex;flex-wrap:wrap;gap:10px}
+    .badge{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);font-size:13px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero-card{padding:20px}
+    .resume{display:flex;gap:10px;margin-top:14px}
+
+    /* SECTIONS */
+    section{max-width:1100px;margin:28px auto;padding:0 18px}
+    .section-title{font-size:22px;margin:12px 0 12px;display:flex;align-items:center;gap:12px}
+    .section-title .dot{width:12px;height:12px;border-radius:50%;background:linear-gradient(45deg,var(--acc2),var(--acc1));box-shadow:0 0 0 6px rgba(124,92,255,.12)}
+
+    /* SKILLS */
+    .skills{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{padding:8px 12px;border-radius:999px;background:#11162a;border:1px solid rgba(255,255,255,.1);font-size:14px}
+
+    /* PROJECTS */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .project{padding:16px;position:relative;overflow:hidden}
+    .project h3{margin:.4rem 0 .2rem}
+    .project p{color:var(--muted);margin:0 0 10px}
+    .meta{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+    .tag{font-size:12px;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+    .actions{display:flex;gap:10px;margin-top:6px}
+    .link{padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);text-decoration:none;color:var(--text);background:rgba(255,255,255,.04)}
+    .status{position:absolute;top:12px;right:12px;font-size:11px;padding:6px 10px;border-radius:999px;background:linear-gradient(120deg,rgba(124,92,255,.35),rgba(33,212,253,.35));border:1px solid rgba(255,255,255,.18)}
+
+    /* CONTACT */
+    .contact{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+    .contact .card{padding:16px}
+    .socials{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+
+    /* FOOTER */
+    footer{max-width:1100px;margin:24px auto 80px;padding:0 18px;color:var(--muted)}
+
+    /* RESPONSIVE */
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr 1fr}
+      .contact{grid-template-columns:1fr}
+    }
+    @media (max-width: 640px){
+      .grid{grid-template-columns:1fr}
+    }
+
+    /* micro animations */
+    [data-anim]{opacity:0;transform:translateY(8px);transition:opacity .6s ease, transform .6s ease}
+    [data-anim].show{opacity:1;transform:none}
+    .ring{outline:2px solid var(--ring);outline-offset:3px;border-radius:14px}
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand">Anshit Sanjay</div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="btn" href="#resume">Resume</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div>
+      <h1 data-anim>Hi, I’m Anshit — I build practical AI & automation projects.</h1>
+      <p data-anim style="transition-delay:.08s">Early‑career engineer focused on ML, computer vision, and useful tools that save time.</p>
+      <div class="badges" data-anim style="transition-delay:.15s">
+        <span class="badge">Actively seeking roles: ML / Data / SWE</span>
+        <span class="badge">Open to remote & onsite</span>
+      </div>
+      <div class="resume" data-anim style="transition-delay:.22s">
+        <a class="btn" href="#projects">See Projects</a>
+        <a class="btn" href="#contact">Contact Me</a>
+      </div>
+    </div>
+    <div class="card hero-card" data-anim>
+      <strong>Quick Snapshot</strong>
+      <ul>
+        <li>Python, PyTorch, OpenCV, Pandas</li>
+        <li>Streamlit apps & automation with Excel/CSV</li>
+        <li>Git, GitHub, VS Code, macOS (ARM)</li>
+      </ul>
+      <div id="resume" style="margin-top:8px">
+        <a class="link ring" href="#" title="Replace with your resume link">Download Resume (PDF)</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="section-title"><span class="dot"></span>About</h2>
+    <div class="card" style="padding:16px" data-anim>
+      I enjoy turning ideas into working products — from computer‑vision pipelines to small tools that automate everyday tasks. I care about clarity, reproducibility, and clean UX.
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2 class="section-title"><span class="dot"></span>Skills</h2>
+    <div class="skills" data-anim>
+      <span class="chip">Python</span>
+      <span class="chip">PyTorch</span>
+      <span class="chip">OpenCV</span>
+      <span class="chip">Pandas</span>
+      <span class="chip">NumPy</span>
+      <span class="chip">Streamlit</span>
+      <span class="chip">SQL / SQLite</span>
+      <span class="chip">Git & GitHub</span>
+      <span class="chip">Docker (basics)</span>
+      <span class="chip">REST APIs</span>
+      <span class="chip">HTML/CSS/JS</span>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2 class="section-title"><span class="dot"></span>Projects</h2>
+    <div class="grid">
+      <!-- Practical Project 1 -->
+      <article class="card project" data-anim>
+        <div class="status">In progress (1–2 weeks)</div>
+        <h3>Face‑Recognition Attendance System</h3>
+        <p>Camera‑based attendance logger with face verification, CSV/SQLite export, and a simple desktop UI.</p>
+        <div class="meta">
+          <span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">FaceNet/ArcFace</span><span class="tag">SQLite</span>
+        </div>
+        <div class="actions">
+          <a class="link" href="#" title="Replace with demo link">Live Demo</a>
+          <a class="link" href="#" title="Replace with repo link">GitHub</a>
+        </div>
+      </article>
+
+      <!-- Practical Project 2 -->
+      <article class="card project" data-anim style="transition-delay:.05s">
+        <div class="status">In progress (3–5 days)</div>
+        <h3>AI Excel Assistant</h3>
+        <p>Upload an Excel → auto clean, validate, summarize, and generate charts. Download a polished report.</p>
+        <div class="meta">
+          <span class="tag">Streamlit</span><span class="tag">Pandas</span><span class="tag">OpenPyXL</span><span class="tag">Matplotlib</span>
+        </div>
+        <div class="actions">
+          <a class="link" href="#">Live Demo</a>
+          <a class="link" href="#">GitHub</a>
+        </div>
+      </article>
+
+      <!-- Project 3: This website -->
+      <article class="card project" data-anim style="transition-delay:.1s">
+        <div class="status">Shipped</div>
+        <h3>Personal Portfolio</h3>
+        <p>Fast single‑file site, responsive layout, GitHub Pages deployment, and clean design system.</p>
+        <div class="meta">
+          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Vanilla JS</span>
+        </div>
+        <div class="actions">
+          <a class="link" href="#">Live Site</a>
+          <a class="link" href="#">GitHub</a>
+        </div>
+      </article>
+
+      <!-- Mini Project 1 -->
+      <article class="card project" data-anim style="transition-delay:.15s">
+        <div class="status">2–3 days</div>
+        <h3>Customer Churn Predictor</h3>
+        <p>Small ML app that predicts churn from tabular data and explains drivers with SHAP.</p>
+        <div class="meta">
+          <span class="tag">scikit‑learn</span><span class="tag">SHAP</span><span class="tag">Streamlit</span>
+        </div>
+        <div class="actions">
+          <a class="link" href="#">Demo</a>
+          <a class="link" href="#">GitHub</a>
+        </div>
+      </article>
+
+      <!-- Mini Project 2 -->
+      <article class="card project" data-anim style="transition-delay:.2s">
+        <div class="status">2–3 days</div>
+        <h3>Movie Recommender</h3>
+        <p>Lightweight recommender (cosine similarity) with simple UI and favorites list.</p>
+        <div class="meta">
+          <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Streamlit</span>
+        </div>
+        <div class="actions">
+          <a class="link" href="#">Demo</a>
+          <a class="link" href="#">GitHub</a>
+        </div>
+      </article>
+
+      <!-- Optional: Research/Capstone (uncomment when ready) -->
+      <!--
+      <article class="card project">
+        <div class="status">Flagship</div>
+        <h3>Lunar Crater Detection</h3>
+        <p>End‑to‑end CV pipeline on OHRC imagery with YOLOv8 and GIS shapefiles.</p>
+        <div class="meta">
+          <span class="tag">YOLOv8</span><span class="tag">Rasterio</span><span class="tag">GDAL</span>
+        </div>
+        <div class="actions"><a class="link" href="#">Paper</a><a class="link" href="#">GitHub</a></div>
+      </article>
+      -->
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2 class="section-title"><span class="dot"></span>Contact</h2>
+    <div class="contact">
+      <div class="card" data-anim>
+        <strong>Let’s talk</strong>
+        <p style="margin:.4rem 0 0">Email: <a class="link" href="mailto:youremail@example.com">youremail@example.com</a></p>
+        <div class="socials">
+          <a class="link" href="#" title="GitHub link">GitHub</a>
+          <a class="link" href="#" title="LinkedIn profile">LinkedIn</a>
+          <a class="link" href="#" title="Twitter/X profile">Twitter</a>
+        </div>
+      </div>
+      <div class="card" data-anim>
+        <strong>Availability</strong>
+        <p style="margin:.4rem 0 0">Ready to join as ML/Software Engineer. Open to internships and full‑time roles.</p>
+        <ul style="margin:.2rem 0 0 1rem">
+          <li>Can start within 2–4 weeks</li>
+          <li>Comfortable with take‑home tasks & live coding</li>
+          <li>Time zone: Asia/Kolkata (IST)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> Anshit Sanjay — Built with HTML/CSS/JS, deployed on GitHub Pages
+  </footer>
+
+  <script>
+    // Smooth in-view animation
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} });
+    },{threshold:0.1});
+    document.querySelectorAll('[data-anim]').forEach(el=>io.observe(el));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth anchor scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href'); if(id.length>1){ e.preventDefault(); document.querySelector(id).scrollIntoView({behavior:'smooth'}); }
+      });
+    });
+  </script>
+</body>
+</html>
